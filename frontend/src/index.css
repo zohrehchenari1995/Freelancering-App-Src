@@ -1,0 +1,12 @@
+/* Add font from font.css */
+@import url("/font.css"); 
+
+/* Directive for tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+

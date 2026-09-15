@@ -1,14 +1,61 @@
 /** @type {import('tailwindcss').Config} */
-import {fontFamily} from "tailwindcss/defaultTheme"
+import { fontFamily } from "tailwindcss/defaultTheme";
+
+// Create function for get both color and opacity
+function withOpacity(variabelName) {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `rgba(var(${variabelName}), ${opacityValue})`;
+    }
+    return;
+    `rgb(var(${variabelName}))`;
+  };
+}
+
 export default {
-  content: ["./index.html","./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      fontFamily:{
-        sans:["Vazirmatn",...fontFamily.sans]
-      }
+      colors: {
+        primary: {
+          900: withOpacity("--color-primary-900"),
+          800: withOpacity("--color-primary-800"),
+          700: withOpacity("--color-primary-700"),
+          600: withOpacity("--color-primary-600"),
+          500: withOpacity("--color-primary-500"),
+          400: withOpacity("--color-primary-400"),
+          300: withOpacity("--color-primary-300"),
+          200: withOpacity("--color-primary-200"),
+          100: withOpacity("--color-primary-100"),
+          50: withOpacity("--color-primary-50"),
+        },
+        secondary: {
+          900: withOpacity("--color-secondary-900"),
+          800: withOpacity("--color-secondary-800"),
+          700: withOpacity("--color-secondary-700"),
+          600: withOpacity("--color-secondary-600"),
+          500: withOpacity("--color-secondary-500"),
+          400: withOpacity("--color-secondary-400"),
+          300: withOpacity("--color-secondary-300"),
+          200: withOpacity("--color-secondary-200"),
+          100: withOpacity("--color-secondary-100"),
+          50: withOpacity("--color-secondary-50"),
+        },
+        success: withOpacity("--color-success"),
+        warning: withOpacity("--color-warning"),
+        error: withOpacity("--color-error"),
+        red:withOpacity("--color-red-500"),
+        red:withOpacity("--color-red-300"),
+      },
+      contianer:{
+        center:true,
+        padding:"1rem",
+
+      },
+      fontFamily: {
+        sans: ["Vazirmatn", ...fontFamily.sans],
+      },
     },
   },
   plugins: [],
-}
-
+};

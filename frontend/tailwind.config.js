@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import { Container } from "postcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 
 // Create function for get both color and opacity
@@ -7,8 +8,7 @@ function withOpacity(variabelName) {
     if (opacityValue !== undefined) {
       return `rgba(var(${variabelName}), ${opacityValue})`;
     }
-    return;
-    `rgb(var(${variabelName}))`;
+    return`rgb(var(${variabelName}))`;
   };
 }
 
@@ -45,11 +45,12 @@ export default {
         warning: withOpacity("--color-warning"),
         error: withOpacity("--color-error"),
         red:withOpacity("--color-red-500"),
-        red:withOpacity("--color-red-300"),
+       
       },
-      contianer:{
+      container:{
         center:true,
         padding:"1rem",
+       
 
       },
       fontFamily: {

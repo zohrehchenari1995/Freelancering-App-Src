@@ -39,3 +39,22 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+  scroll-behavior: smoth;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  outline: none;
+}
+@layer components {
+  .textFeild__input {
+    @apply  py-4 px-4 rounded-xl text-secondary-900 mb-2 border border-gray-300   hover:border-primary-800 focus:bg-white transition-all duration-300 ease-in-out focus:shadow-lg focus:shadow-primary-200;
+  }
+  .btn {
+    @apply font-bold rounded-xl transition-all duration-300;
+  }
+  .btn--primary {
+    @apply  bg-primary-900   sm:text-sm md:text-base lg:text-lg  py-3 px-4  mt-2 text-white shadow-lg shadow-primary-200  hover:bg-primary-800;
+  }
+}

@@ -1,8 +1,11 @@
 import React from 'react'
+import SendOTPForm from '../features/authentication/SendOTPForm'
 
 function Auth() {
   return (
-    <div>Auth</div>
+    <div className="w-full">
+      <SendOTPForm/>
+    </div>
   )
 }
 

@@ -1,10 +1,14 @@
 import React from 'react'
-import SendOTPForm from '../features/authentication/SendOTPForm'
+import CheckOTPForm from '../features/authentication/CheckOTPForm'
+// import SendOTPForm from '../features/authentication/SendOTPForm'
 
 function Auth() {
   return (
-    <div className="w-full">
-      <SendOTPForm/>
+    <div className="flex justify-center pt-10">
+    <div className="w-full sm:max-w-screen-sm">
+      {/* <SendOTPForm/> */}
+      <CheckOTPForm/>
+    </div>
     </div>
   )
 }

@@ -42,7 +42,8 @@ class userAuthController extends Controller {
       return res.status(HttpStatus.OK).send({
         statusCode: HttpStatus.OK,
         data: {
-          message: `کد تائید برای ورود تستی: ${this.code}`,
+          message:` کد تایید برای شماره موبایل${toPersianDigits(phoneNumber)}ارسال گردید`,
+          // message: `کد تائید برای ورود تستی: ${this.code}`,
           expiresIn: CODE_EXPIRES,
           phoneNumber,
         },

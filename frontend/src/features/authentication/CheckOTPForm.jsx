@@ -20,6 +20,7 @@ function CheckOTPForm() {
             borderRadius:"0.5rem",
             padding:"0.5rem 0.2rem"
           }}
+
         />
 
         <button className="btn btn--primary w-full">کد تایید را ارسال کنید</button>

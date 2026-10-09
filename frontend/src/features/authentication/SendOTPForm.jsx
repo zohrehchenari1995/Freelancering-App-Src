@@ -5,39 +5,22 @@ import { getOtp } from "../../services/authService";
 import toast from "react-hot-toast";
 import Loading from "../../ui/Loading";
 
-function SendOTPForm({ setStep }) {
-  // save get phonenumber in usestate hook....
-  const [phoneNumber, setPhoneNumber] = useState("");
+function SendOTPForm({onSubmit,phoneNumber,onChange,isSendingOtp }) {
+  // save get phonenumber in usestate hook....(lift to parent-component(Authcontainer.jsx))
 
-  // use reactQuery for handle request...
-  const { isPending, error, data, mutateAsync } = useMutation({
-    mutationFn: getOtp,
-  });
 
-  // eventhaqndler...
-  const sendOtpHandler = async (e) => {
-    e.preventDefault();
-    try {
-      const data = await mutateAsync({ phoneNumber });
-      setStep(2);
-
-      toast.success(data.message);
-    } catch (error) {
-      console.log(error?.response?.data?.message);
-    }
-  };
 
   return (
     <div className="container xl:max-w-screen-xl mt-10">
-      <form className="space-y-8" onSubmit={sendOtpHandler}>
+      <form className="space-y-8" onSubmit={onSubmit}>
         <TextField
           label="شماره موبایل"
           name="phoneNumber"
           value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
+          onChange={onChange}
         />
 
-        {isPending ? (
+        {isSendingOtp ? (
           <Loading />
         ) : (
           <button className="btn btn--primary w-full" type="submit">

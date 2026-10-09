@@ -9,5 +9,7 @@ export function getOtp(data) {
 
 // authService for check-otp...(data:verify-code)
 export function checkOtp(data) {
-  return http.post("user/check-otp", data);
+  return http.post("user/check-otp", data).then(({data})=>{
+    return data.data;
+  });
 }

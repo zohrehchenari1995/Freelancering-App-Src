@@ -6,9 +6,24 @@ import { getOtp } from "../../services/authService";
 import toast from "react-hot-toast";
 
 function AuthContainer() {
-    // use reactQuery for handle request...
-  const { isPending:isSendingOtp, mutateAsync } = useMutation({
-    mutationFn: getOtp,
+  // use reactQuery for handle request...
+  const {
+    isPending: isSendingOtp,
+    mutateAsync,
+    data: otpResponse,
+  } = useMutation({
+    mutationFn: async ({ phoneNumber }) => {
+      const startTime = Date.now();
+
+      const data = await getOtp({ phoneNumber });
+      const defTime = Date.now() - startTime;
+      const remaindTime = Math.max(0, 500 - defTime);
+
+      await new Promise((resolve) => {
+        return setTimeout(resolve, remaindTime);
+      });
+      return data;
+    },
   });
 
   // eventhaqndler...
@@ -17,24 +32,39 @@ function AuthContainer() {
     try {
       const data = await mutateAsync({ phoneNumber });
       setStep(2);
-     
+
       toast.success(data.message);
     } catch (error) {
       console.log(error?.response?.data?.message);
     }
   };
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const [phoneNumber, setPhoneNumber] = useState("09179506730");
 
   const renderStep = () => {
     switch (step) {
       case 1: {
-        return <SendOTPForm setStep={setStep} phoneNumber={phoneNumber} onChange={(e)=>{setPhoneNumber(e.target.value)}} onSubmit={sendOtpHandler} isSendingOtp={isSendingOtp}
-       
-        />;
+        return (
+          <SendOTPForm
+            setStep={setStep}
+            phoneNumber={phoneNumber}
+            onChange={(e) => {
+              setPhoneNumber(e.target.value);
+            }}
+            onSubmit={sendOtpHandler}
+            isSendingOtp={isSendingOtp}
+          />
+        );
       }
       case 2: {
-        return <CheckOTPForm phoneNumber={phoneNumber}  onBack={()=>setStep((s)=> s -1 )} onResendOtp={sendOtpHandler}/>;
+        return (
+          <CheckOTPForm
+            phoneNumber={phoneNumber}
+            onBack={() => setStep((s) => s - 1)}
+            onResendOtp={sendOtpHandler}
+            otpResponse={otpResponse}
+          />
+        );
       }
       default:
         return null;

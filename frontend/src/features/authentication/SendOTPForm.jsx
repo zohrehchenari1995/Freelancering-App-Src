@@ -20,8 +20,11 @@ function SendOTPForm({onSubmit,phoneNumber,onChange,isSendingOtp }) {
           onChange={onChange}
         />
 
+ 
+
         {isSendingOtp ? (
           <Loading />
+        
         ) : (
           <button className="btn btn--primary w-full" type="submit">
             ارسال کد تایید

@@ -5,10 +5,11 @@ import { checkOtp } from "../../services/authService";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import {HiArrowRight} from "react-icons/hi";
+import {CiEdit} from "react-icons/ci";
 
 const RESEND_TIME =90;
 
-function CheckOTPForm({phoneNumber,onBack,onResendOtp}) {
+function CheckOTPForm({phoneNumber,onBack,onResendOtp,otpResponse}) {
   // state for handle otpform and checkotp form....
   const [otp, setOtp] = useState("");
   // satate for navigate with all role(owner,freelancer and dont have role).....
@@ -57,6 +58,15 @@ function CheckOTPForm({phoneNumber,onBack,onResendOtp}) {
       <button onClick={onBack}>
         <HiArrowRight className="w-6 h-6 text-secondary-500"/>
       </button>
+
+      {/* for edit otpcode... */}
+      {
+        otpResponse && (<p className="flex items-center gap-x-2 my-4"> <span>{otpResponse?.message}</span>
+          <button onClick={onBack}>
+            <CiEdit/>
+          </button>
+        </p>)
+      }
 
       {/* show timer.... */}
       <div className="mt-2 mb-4 text-secondary-500">

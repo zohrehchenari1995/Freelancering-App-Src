@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 import { Container } from "postcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
+import tailwindFormPlugin from "@tailwindcss/forms";
 
 // Create function for get both color and opacity
 function withOpacity(variabelName) {
@@ -58,5 +59,9 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+     tailwindFormPlugin({
+       strategy: 'class'
+     })
+  ],
 };

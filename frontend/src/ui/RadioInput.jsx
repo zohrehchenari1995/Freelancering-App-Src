@@ -1,0 +1,20 @@
+import React from "react";
+
+function RadioInput({ name, id, value, onChange, label, checked }) {
+  return (
+    <div className="flex items-center gap-x-2 text-secondary-600">
+      <input
+        className="cursor-pointer w-4 h-4 accent-red"
+        type="radio"
+        name={name}
+        id={id}
+        value={value}
+        onChange={onChange}
+        checked={checked}
+      />
+      <label htmlFor="FREELANCER">{label}</label>
+    </div>
+  );
+}
+
+export default RadioInput;

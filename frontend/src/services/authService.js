@@ -13,3 +13,10 @@ export function checkOtp(data) {
     return data.data;
   });
 }
+
+// complite-profile for send info...(anme,email,role)
+export function CompleteProfile(data){
+  return http.post("/user/complete-profile",data).then(({data})=>{
+      return data.data
+  })
+}

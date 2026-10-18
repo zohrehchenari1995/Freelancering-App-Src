@@ -1,6 +1,6 @@
 import React from 'react'
 
-function TextField({label,name,value,onChange}) {
+function TextField({label,name,value,onChange,type="tel"}) {
   return (
      <div>
           <label
@@ -13,7 +13,7 @@ function TextField({label,name,value,onChange}) {
             value={value}
             onChange={onChange}
             id={name}
-            type="tel"
+            type={type}
             className="textFeild__input w-full"
             autoComplete="off"
             name={name}

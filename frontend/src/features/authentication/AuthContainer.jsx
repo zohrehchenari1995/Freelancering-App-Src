@@ -6,12 +6,8 @@ import { getOtp } from "../../services/authService";
 import toast from "react-hot-toast";
 
 function AuthContainer() {
-  // use reactQuery for handle request...
-  const {
-    isPending: isSendingOtp,
-    mutateAsync,
-    data: otpResponse,
-  } = useMutation({
+  // use reactQuery for handle request and delay in change setSetep...
+  const { isPending: isSendingOtp, mutateAsync,data: otpResponse} = useMutation({
     mutationFn: async ({ phoneNumber }) => {
       const startTime = Date.now();
 

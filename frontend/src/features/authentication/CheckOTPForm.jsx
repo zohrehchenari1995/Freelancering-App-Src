@@ -38,18 +38,38 @@ function CheckOTPForm({ phoneNumber, onBack, onResendOtp, otpResponse }) {
   // eventhandler for click on all form(input and button).....
   const checkOtpHandler = async (e) => {
     e.preventDefault();
+        console.log("Phone number:", phoneNumber);
     try {
+  
       const { message, user } = await mutateAsync({ phoneNumber, otp });
       toast.success(message);
+
+      // check isActive user....
+      if (!user.isActive || !user.name || !user.email){
+       return navigate("/complete-profile");
+      
+      }
+      if(user.status !== 2){
+        navigate("/");
+        toast("پروفایل شما در انتطار تایید است", {icon: '👏'});
+        return;
+      } 
 
       if (user.isActive) {
         // if(user.role=== "OWNER") navigate("/owner");
         // if(user.role === "FREELANCER") navigate("/freelancer");
-      } else {
-        navigate("/complete-profile");
-      }
+      } 
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      // toast.error(error?.response?.data?.message);
+      console.log("Full error:", error);
+  console.log("Response data:", error?.response?.data);
+  console.log("Error message:", error?.message);
+
+  toast.error(
+    error?.response?.data?.message ||
+    error?.message ||
+    "خطایی رخ داده است"
+  );
     }
   };
 

@@ -32,6 +32,8 @@ function AuthContainer() {
       toast.success(data.message);
     } catch (error) {
       console.log(error?.response?.data?.message);
+  
+      
     }
   };
   const [step, setStep] = useState(1);

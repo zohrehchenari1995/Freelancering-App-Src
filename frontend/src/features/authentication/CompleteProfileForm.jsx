@@ -4,11 +4,14 @@ import RadioInput from "../../ui/RadioInput";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { CompleteProfile } from "../../services/authService";
+import {useNavigate} from "react-router-dom";
+import Loading from "../../ui/Loading";
 
-function CompleteProfileForm({ onSubmit, isPendingData, label }) {
+function CompleteProfileForm({ onSubmit, label }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
+  const navigate = useNavigate();
   
   // send request to backend...
   const {isPending,mutateAsync} = useMutation({
@@ -18,7 +21,7 @@ function CompleteProfileForm({ onSubmit, isPendingData, label }) {
       const data =await CompleteProfile({name,email,role})
       const difTime = Date.now() - startTime;
       console.log(data);
-      const remaindTime = Math.max(0,500 - difTime);
+      const remaindTime = Math.max(0, 500 - difTime);
 
        await new Promise((resolve) => {
             return setTimeout(resolve, remaindTime);
@@ -31,14 +34,26 @@ function CompleteProfileForm({ onSubmit, isPendingData, label }) {
   // send info form to backend....
   const handelSubmit = async(e)=>{
       e.preventDefault();
+      console.log({ name, email, role });
       try{
         const {user,message} = await mutateAsync({name,email,role})
         console.log(user,message);
         toast.success(message);
+
+         // check isActive user....
+      if(user.status !== 2){
+        navigate("/");
+        toast("پروفایل شما در انتطار تایید است", {icon: '👏'});
+        return;
+      } 
+
+      if (user.isActive) {
+        // if(user.role=== "OWNER") navigate("/owner");
+        // if(user.role === "FREELANCER") navigate("/freelancer");
+      } 
       }
       catch(error){
         toast.error(error?.response?.data?.message);
-        console.log("error:",error)
       }
   }
 
@@ -81,7 +96,7 @@ function CompleteProfileForm({ onSubmit, isPendingData, label }) {
             />
           </div>
 
-          {isPendingData ? (
+          {isPending ? (
             <Loading />
           ) : (
             <button className="btn btn--primary w-full" type="submit">

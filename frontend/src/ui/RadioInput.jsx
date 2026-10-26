@@ -12,7 +12,7 @@ function RadioInput({ name, id, value, onChange, label, checked }) {
         onChange={onChange}
         checked={checked}
       />
-      <label htmlFor="FREELANCER">{label}</label>
+      <label htmlFor={id}>{label}</label>
     </div>
   );
 }

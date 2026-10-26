@@ -21,7 +21,7 @@ const checkOtpSchema = Joi.object({
 
 const completeProfileSchema = Joi.object({
   name: Joi.string()
-    .min(5)
+    .min(2)
     .max(100)
     .error(createHttpError.BadRequest("نام کاربری وارد شده صحیح نمی باشد")),
   email: Joi.string()

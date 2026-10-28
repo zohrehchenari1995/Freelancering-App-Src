@@ -2,7 +2,9 @@ import React from 'react'
 
 function Home() {
   return (
-    <div>HomePage</div>
+   <div className="xl:max-w-screen-xl">
+    <div>hoem page</div>
+   </div>
   )
 }
 

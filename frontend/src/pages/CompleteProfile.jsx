@@ -3,9 +3,11 @@ import CompleteProfileForm from '../features/authentication/CompleteProfileForm'
 
 function CompleteProfile(onSubmit) {
   return (
-    <div>
+   <div className="container xl:max-w-screen-xl">
+     <div>
       <CompleteProfileForm />
     </div>
+   </div>
   )
 }
 

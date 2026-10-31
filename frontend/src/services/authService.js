@@ -17,6 +17,13 @@ export function checkOtp(data) {
 // complite-profile for send info...(anme,email,role)
 export function CompleteProfile(data){
   return http.post("/user/complete-profile",data).then(({data})=>{
-      return data.data
+      return data.data;
+  })
+}
+
+// get user information for header(owner)...
+export function getUser(){
+  return http.get("user/profile").then(({data})=>{
+    return data.data;
   })
 }

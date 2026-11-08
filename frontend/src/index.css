@@ -66,4 +66,56 @@ body{
   .btn--primary {
     @apply  bg-primary-900   sm:text-sm md:text-base lg:text-lg  py-3 px-4  mt-2 text-white shadow-lg shadow-primary-200  hover:bg-primary-800;
   }
+  .btn--secondary{
+    @apply bg-secondary-600 text-secondary-100;
+  }
+  .btn--outline{
+    @apply border border-secondary-700 text-secondary-700
+  }
+  .btn--danger{
+    @apply border border-rose-700 text-rose-700;
+  }
+  .badge{
+    @apply inline-block whitespace-nowrap rounded-xl px-2 py-0.5;
+  }
+  .badge--primary{
+    @apply  bg-primary-900 text-white;
+  }
+  .badge--secondary{
+    @apply  bg-secondary-200 text-secondary-600;
+  }
+  .badge--success{
+    @apply bg-green-500 text-white px-5;
+  }
+  .badge--danger{
+    @apply bg-rose-500 text-white px-3;
+  }
+  
+}
+
+/* table */
+
+table{
+  border-collapse: collapse;
+  border-spacing: 0;
+  /* width: 100%; */
+}
+table .title-row{
+  background-color: rgb(var(--color-secondary-0));
+}
+table th{
+  white-space: nowrap;
+  padding: 0.6rem 1.5rem;
+  text-align: right;
+  border-bottom: 1px solid rgb(var(--color-secondary-400));
+  color: rgb(var(--color-secondary-600));
+  font-size: 0.9rem;
+  
+}
+
+table td{
+  font-size: 0.85rem;
+  padding: 1rem;
+  color: rgb(var(--color-secondary-600));
+
 }

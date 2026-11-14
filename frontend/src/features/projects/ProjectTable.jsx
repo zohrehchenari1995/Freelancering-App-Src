@@ -1,6 +1,9 @@
 import useOwnerProjects from "./useOwnerProjects";
 import Loading from "../../ui/Loading";
 import Empty from "../../ui/Empty";
+import TruncateText from "../../utils/TruncateText";
+import toLocaleDateString from "../../utils/toLocaleDateString";
+import toPersianNumbersWithComma, { toPersianNumbers } from "../../utils/toPersianNumbers";
 
 function ProjectTable() {
   const { isLoading, projects } = useOwnerProjects();
@@ -10,7 +13,7 @@ function ProjectTable() {
   if (!projects.length) return <Empty resourceName="پروژه " />;
 
   return (
-    <div className="w-full overflow-x-auto ">
+    <div className="w-full overflow-x-auto">
       <table className="w-full min-w-[700px]">
         <thead>
           <tr className="title-row  ">
@@ -29,11 +32,11 @@ function ProjectTable() {
           {projects.map((project, index) => {
             return (
               <tr key={project._id}>
-                <td>{index + 1}</td>
-                <td>{project.title}</td>
+                <td>{toPersianNumbers(index + 1)}</td>
+                <td>{TruncateText(project.title,30)}</td>
                 <td>{project.category.title}</td>
-                <td>{project.budget}</td>
-                <td>{project.deadline}</td>
+                <td>{toPersianNumbersWithComma(project.budget)}</td>
+                <td>{toLocaleDateString(project.deadline)}</td>
                 <td>
                   <div className="flex flex-wrap items-center gap-2 max-w-[200px]">
                     {project.tags.map((tag) => (
